@@ -191,7 +191,7 @@ const DonationManager = () => {
             </div>
  
             <div className="donate-form-group">
-              <label className="donate-form-label">Pickup Location</label>
+              <label className="donate-form-label">Pickup Area</label>
               <input
                 type="text"
                 name="location"

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/register.css';
- 
+import loginBackground from '../styles/1.webp'; // Adjust the path as necessary
+
 const Register = () => {
     const navigate = useNavigate();
    
@@ -78,6 +79,20 @@ const Register = () => {
     };
  
     return (
+        <div 
+            className="register-container" 
+            style={{
+                backgroundImage: `url(${loginBackground})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                minHeight: '100vh',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
         <div className="container1">
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
@@ -163,6 +178,7 @@ const Register = () => {
             </p>
             {error && <p className="error-message">{error}</p>}
             {message && <p className="success-message">{message}</p>}
+        </div>
         </div>
     );
 };

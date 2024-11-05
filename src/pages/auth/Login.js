@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
+import loginBackground from '../styles/1.webp'; // Adjust the path as necessary
 
 const Login = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         try {
             const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
@@ -35,7 +36,7 @@ const Login = () => {
                 localStorage.setItem('userType', data.userType);
                 localStorage.setItem('username', formData.username);
                 setMessage('Login successful! Redirecting...');
-                
+
                 setTimeout(() => {
                     navigate('/dashboard');
                 }, 1000);
@@ -48,31 +49,44 @@ const Login = () => {
     };
 
     return (
-        <div className="container1">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    placeholder="Username"
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Password"
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
-            <p className="switch-form">
-                Don't have an account? <a href="/register">Register</a>
-            </p>
-            {message && <p className="message">{message}</p>}
+        <div className="login-container">
+            {/* Left section with background image */}
+            <div 
+                className="login-illustration" 
+                style={{
+                    backgroundImage: `url(${loginBackground})`, 
+                    backgroundSize: 'cover', 
+                    backgroundPosition: 'center'
+                }}
+            ></div>
+            
+            {/* Right section with form */}
+            <div className="login-form">
+                <h2 className="form-welcome">Welcome back</h2>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        placeholder="Username"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Password"
+                        required
+                    />
+                    <button type="submit">Login</button>
+                </form>
+                <p className="switch-form">
+                    <a href="/register">Create Account</a> | <a href="#">Forgot Password?</a>
+                </p>
+                {message && <p className="message">{message}</p>}
+            </div>
         </div>
     );
 };
